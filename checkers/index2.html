@@ -1,0 +1,78 @@
+<script src="node_modules/react/umd/react.development.js"></script>
+<script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<div id="app"> </div>
+<script>
+var styles = { 
+    black: {height:'20px', width: '20px', backgroundColor: 'black', display: 'inline-block'},
+    red: {height:'20px', width: '20px', bakcgroundColor: 'red', display:'inline-block'}
+}
+var boards = ChekcerBoard(dimensions)
+var dimensions = prompt("How big would you like your checker board in squares?")
+console.log("dimensions: ", dimensions)
+while( dimensions === null){
+    dimensions = prompt("How big would you like your checker board in squares?")
+}
+
+function ChekcerBoard (props){
+    var rows = [];
+    for (var i = 0; i < props; i++){
+        if(  i % 2 === 0){
+            console.log("cboard if : ", i)
+        rows.push(Row(styles, true))
+        }  else {
+            console.log("cboard else : ", i)
+
+            rows.push(Row(styles, false));
+        }
+    }
+    return React.createElement('div', null, rows)
+
+}
+
+function Row (props, red) {
+    var columns = [];
+    if (red){
+    
+    for (var i = 0; i < dimensions; i++) {
+        
+        if (i % 2 === 0 ){
+            console.log("row red if : ", i)
+            columns.push(Cell(styles, true))
+
+        } else {
+            console.log("row red else : ", i)
+            columns.push(Cell(styles, false))
+        }
+
+
+    }
+    } else {
+        for ( var i= 0; i < dimensions; i++){
+
+            if ( i%2 === 0){
+                console.log("row black if : ", i)
+            columns.push(Cell(styles, true))
+            } else {
+                console.log("row black else : ", i)
+                columns.push(Cell(styles, false))
+            }
+        } 
+    }
+     return React.createElement('div', {style: {display: 'block', padding: '0px', marginBottom: '-32px'}}, columns)
+}
+function Cell(props, red){
+    if(red){
+        console.log("red cell: ")
+        return React.createElement('p', {styles: props.red}, "")
+    } else {
+        console.log("black cell : ")
+        return React.createElement('p', {styles:props.black}, "")
+    }
+}
+
+
+
+ReactDOM.render(
+    boards, document.getElementById('app'));
+</script>

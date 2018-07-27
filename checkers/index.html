@@ -1,0 +1,103 @@
+<script src="node_modules/react/umd/react.development.js"></script>
+<script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<div id="app"></div>
+<script>
+
+//And feel free to use the following object:
+var styles = {
+//   row: {height: '20px'},
+//   cell: {height: '20px', width: '20px', display:'inline-block'},
+  black: {height: '20px', width: '20px', display:'inline-block', backgroundColor: 'black'},
+  red: {height: '20px', width: '20px', display:'inline-block', backgroundColor: 'red'}
+}
+
+var dimensions = prompt("Please enter the dimensions (number of rows & columns)");
+while (dimensions === null){
+  dimensions = prompt("please enter a value")
+}
+var boards = CheckerBoard(dimensions);
+
+
+
+function CheckerBoard (props) {
+
+    var rows = [];
+    for (var i = 1; i <= props; i++) {
+        console.log("cboard : ", i)
+
+        if (i%2==0) {
+            console.log("cboard if : ", i)
+            rows.push(Row(styles, true));
+        }
+        else {
+            console.log("cboard else : ", i)
+
+            rows.push(Row(styles, false));
+        }
+    }
+    return React.createElement('div', null, rows);
+}
+
+function Row (props, red) {
+console.log("props first then dimensions", props," dimes: ", dimensions)
+    var columns = [];
+
+    if (red) {
+
+        for (var i = 1; i <= dimensions; i++) {
+            console.log("row red loop : ", i)
+
+            if (i%2 !=0) {
+                console.log("row red if : ", i)
+
+                columns.push(Cell(styles, true))
+            }
+            else {
+                console.log("row red else : ", i)
+
+                columns.push(Cell(styles, false));
+            }
+        }
+    }
+
+    else {
+        
+        for (var i = 1; i <= dimensions; i++) {
+            if (i%2 ==0) {
+                console.log("row black if : ", i)
+
+                columns.push(Cell(styles, true))
+            }
+            else {
+                console.log("row black else : ", i)
+
+                columns.push(Cell(styles, false));
+            }
+        }
+    }
+    return React.createElement('div', {style: {display: 'block', padding: '0px', marginBottom: '-32px'}}, columns); /*Some UI... perhaps a list of cells?*/
+}
+function Cell(props, red) {
+
+    if (red) {
+        console.log("cell if  : ")
+
+        return React.createElement('p', {style: props.red }, "");
+    }
+    else {
+        console.log("cell else : ")
+
+        return React.createElement('p', {style: props.black }, "");
+    }
+}
+
+
+
+
+
+ReactDOM.render(
+    boards,
+    document.getElementById('app')
+);
+</script>

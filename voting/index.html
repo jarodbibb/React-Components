@@ -1,0 +1,30 @@
+
+
+<script src="node_modules/react/umd/react.development.js"></script>
+<script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<div id="app"> </div>
+<script type ="text/babel">
+var votes = []
+
+const List = (props) => {
+    const noteItems = props.notes.map((note, index) => { votes[index] = 0
+        
+        return (<div key = {note}> 
+    <button onClick = {() => {
+        votes[index]++;
+        alert(votes[index])
+    }} > {note} </button></div>
+        )
+    }
+    )
+
+
+    return (<ul> { noteItems } </ul> );
+}
+ReactDOM.render(
+    <List notes={ ["react", "hack", "back"]}/>, document.getElementById('app')
+)
+
+</script>

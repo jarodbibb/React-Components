@@ -1,0 +1,61 @@
+<script src="node_modules/react/umd/react.development.js"></script>
+<script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<div id="app"></div>
+
+<script type="text/babel">
+class Counter extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            count: 0
+        }
+
+    }
+    render(){
+        return ( <div> 
+                    <h1> {this.state.count} </h1>
+        <button onClick= { () => this.setState({ count: this.state.count + 1 })} > Increase by One </button>
+                <button onClick= { () => this.setState({ count: this.state.count -1 })} >Decrease by One
+                </button>
+                </div>
+        
+        )
+    }
+}
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state= {
+            text: "add button",
+            butts: [],
+            counter:[]
+        }
+    }
+
+    render(){
+        return (<div>
+        <h1> Add Counter </h1>
+            <button onClick= {() => this.setState({ counter: this.state.butts.push(<Counter/>) })}> {this.state.text}</button>
+            <div> {this.state.butts.map(( butt) => {
+                return ( butt )
+            })}
+        </div>
+        </div>
+        
+        
+         )
+    }
+}
+
+
+
+
+
+ReactDOM.render(<App/>, document.getElementById('app'))
+</script>
+
+
+
+
