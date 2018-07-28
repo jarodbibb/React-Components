@@ -1,0 +1,43 @@
+<script src="node_modules/react/umd/react.development.js"></script>
+<script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<div id="app"></div>
+
+<script type="text/babel">
+class Votes extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            title: 'Vote',
+            votes: [
+                { name: "React", vote: 0},
+                {name: "angular", vote: 0},
+                { name: "ruby", vote: 0}
+            ]
+        }
+    }
+    render(){
+        return (<div> 
+                    <h1 key= {this.state.title} > {this.state.title} </h1>
+                    <div key= {this.state.votes}> 
+                         { this.state.votes.map((lang , index) => {
+              
+                            <p> { lang.name}</p>
+                            <p> { lang.vote } </p>
+                            <button onClick= { ()=> this.setState({vote : lang.vote +=1})}> Vote </button>
+                                </div>
+                        
+                            )
+                            })}
+                           
+                             </div> 
+
+                    </div>
+          
+                        )
+    }
+}
+ReactDOM.render(<Votes/>, document.getElementById('app'))
+</script>
+
+

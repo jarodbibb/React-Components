@@ -15,9 +15,8 @@ class Counter extends React.Component {
     render(){
         return ( <div> 
                     <h1> {this.state.count} </h1>
-        <button onClick= { () => this.setState({ count: this.state.count + 1 })} > Increase by One </button>
-                <button onClick= { () => this.setState({ count: this.state.count -1 })} >Decrease by One
-                </button>
+                        <button onClick= { () => this.setState({ count: this.state.count + 1 })} > Increase by One </button>
+                        <button onClick= { () => this.setState({ count: this.state.count -1 })} >Decrease by One</button>
                 </div>
         
         )
@@ -30,19 +29,22 @@ class App extends React.Component {
         this.state= {
             text: "add button",
             butts: [],
-            counter:[]
+            
         }
+    }
+    dosomething(){
+        // this.setState
     }
 
     render(){
         return (<div>
-        <h1> Add Counter </h1>
-            <button onClick= {() => this.setState({ counter: this.state.butts.push(<Counter/>) })}> {this.state.text}</button>
-            <div> {this.state.butts.map(( butt) => {
-                return ( butt )
-            })}
-        </div>
-        </div>
+                    <h1> Add Counter </h1>
+                        <button onClick= { this.dosomething } {() => this.setState({ count: this.state.butts.push(<Counter/>) })}> {this.state.text}</button>
+                        <div> {this.state.butts.map(( butt) => {
+                            return ( butt )
+                            })}
+                        </div>
+                </div>
         
         
          )
